@@ -9,7 +9,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/icon"
+        android:icon="@drawable/fly_away_icon_xhdpi"
         android:label="@string/fly_away"
         android:theme="@style/AppTheme" >
         <activity
