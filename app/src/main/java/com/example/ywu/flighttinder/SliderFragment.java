@@ -20,10 +20,14 @@ public class SliderFragment extends Fragment {
     public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.slider_page, container, false);
         ImageView imageView = (ImageView) rootView.findViewById(R.id.imageView);
-        if (position % 2 == 0) {
-            imageView.setImageDrawable(getResources().getDrawable(R.drawable.exp));
-        } else {
-            imageView.setImageDrawable(getResources().getDrawable(R.drawable.orb));
+        if (position == 0) {
+            imageView.setImageDrawable(getResources().getDrawable(R.drawable.tut1));
+        } else if (position == 1) {
+            imageView.setImageDrawable(getResources().getDrawable(R.drawable.tut2));
+        } else if (position == 2) {
+            imageView.setImageDrawable(getResources().getDrawable(R.drawable.tut3));
+        } else if (position == 3) {
+            imageView.setImageDrawable(getResources().getDrawable(R.drawable.tut4));
         }
         return rootView;
     }

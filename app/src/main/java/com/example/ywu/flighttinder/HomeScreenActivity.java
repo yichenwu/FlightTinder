@@ -10,24 +10,33 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-public class HomeScreenActivity extends AppCompatActivity {
+public class HomeScreenActivity extends AppCompatActivity{
+    private Double latitude;
+    private Double longitude;
+    private WebView webView;
+
+    private String uid1 = "123";
+    private String uid2 = "321";
+    private String uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
 
-//        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM, ActionBar.DISPLAY_SHOW_CUSTOM);
-//        getSupportActionBar().setCustomView(R.layout.action_bar);
+//        getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+//        getActionBar().setCustomView(R.layout.action_bar);
 
         if (getApplicationContext().checkCallingOrSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -36,16 +45,18 @@ public class HomeScreenActivity extends AppCompatActivity {
             Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
             locationManager.removeUpdates(myLocationListener);
 
-            Double latitude = location.getLatitude();
-            Double longitude = location.getLongitude();
+            latitude = location.getLatitude();
+            longitude = location.getLongitude();
             Log.d("latitude", latitude.toString());
             Log.d("longtitude", longitude.toString());
 
-            WebView webView = (WebView) findViewById(R.id.webview);
+            webView = (WebView) findViewById(R.id.webView);
             WebSettings webSettings = webView.getSettings();
             webSettings.setJavaScriptEnabled(true);
             webView.setWebViewClient(new MyWebViewClient());
-            webView.loadUrl("https://www.expedia.com");
+            uid = uid1;
+            webView.loadUrl("http://10.222.200.64:8080/api/suggestion/getAirportInfo?lat=" + latitude.toString() + "&long=" + longitude.toString());
+            Log.d("uid", uid);
         }
     }
 
@@ -64,17 +75,34 @@ public class HomeScreenActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
+        if (id == R.id.action_settings) {
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void switchUser(MenuItem item) {
+        if (uid.equals(uid1)) {
+            uid = uid2;
+        } else {
+            uid = uid1;
+        }
+
+        webView.loadUrl("http://10.222.200.64:8080/api/suggestion/getAirportInfo?lat=" + latitude.toString() + "&long=" + longitude.toString());
+        Log.d("uid", uid);
     }
 
     private class MyWebViewClient extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             return false;
+        }
+
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            findViewById(R.id.progressView).setVisibility(View.GONE);
+            view.setVisibility(View.VISIBLE);
         }
     }
 

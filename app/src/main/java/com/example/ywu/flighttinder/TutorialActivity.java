@@ -10,7 +10,7 @@ import android.support.v4.view.PagerAdapter;
 
 public class TutorialActivity extends FragmentActivity{
 
-    private static final int NUM_PAGES = 5;
+    private static final int NUM_PAGES = 4;
     private SliderViewPager viewPager;
     private PagerAdapter pagerAdapter;
 

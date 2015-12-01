@@ -2,7 +2,7 @@
     <string name="app_name">FlightTinder</string>
 
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="switch_user">Switch User</string>
 
     <string name="fly_away">FLY AWAY</string>
 </resources>
