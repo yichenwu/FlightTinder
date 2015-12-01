@@ -50,7 +50,7 @@ public class TutorialActivity extends FragmentActivity{
 
         @Override
         public Fragment getItem(int position) {
-            return new SliderFragment();
+            return SliderFragment.createFragment(position);
         }
 
         @Override
