@@ -1,6 +1,7 @@
 package com.example.ywu.flighttinder;
 
 import android.Manifest;
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -24,6 +25,9 @@ public class HomeScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
+
+//        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM, ActionBar.DISPLAY_SHOW_CUSTOM);
+//        getSupportActionBar().setCustomView(R.layout.action_bar);
 
         if (getApplicationContext().checkCallingOrSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -60,9 +64,9 @@ public class HomeScreenActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }
