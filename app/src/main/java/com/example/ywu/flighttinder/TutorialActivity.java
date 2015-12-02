@@ -6,13 +6,11 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.PagerAdapter;
 
 public class TutorialActivity extends FragmentActivity{
 
     private static final int NUM_PAGES = 4;
     private SliderViewPager viewPager;
-    private PagerAdapter pagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,13 +18,8 @@ public class TutorialActivity extends FragmentActivity{
         setContentView(R.layout.tutorial_page);
 
         viewPager = (SliderViewPager) findViewById(R.id.pager);
-        pagerAdapter = new SliderPagerAdapter(getSupportFragmentManager());
-        viewPager.setAdapter(pagerAdapter);
+        viewPager.setAdapter(new SliderPagerAdapter(getSupportFragmentManager()));
         viewPager.setOnSwipeOutListener(new SliderViewPager.OnSwipeOutListener() {
-            @Override
-            public void onSwipeOutAtStart() {
-            }
-
             @Override
             public void onSwipeOutAtEnd() {
                 startActivity(new Intent(getApplicationContext(), HomeScreenActivity.class));

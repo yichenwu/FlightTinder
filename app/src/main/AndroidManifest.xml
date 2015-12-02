@@ -5,16 +5,14 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-    <uses-sdk android:targetSdkVersion="21"/>
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/fly_away_icon_xhdpi"
-        android:label="@string/fly_away"
+        android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
             android:name=".TutorialActivity"
-            android:label="@string/fly_away" >
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

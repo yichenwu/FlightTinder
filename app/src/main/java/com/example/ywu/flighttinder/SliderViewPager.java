@@ -17,7 +17,6 @@ public class SliderViewPager extends ViewPager {
         super(context, attrs);
     }
 
-
     public void setOnSwipeOutListener(OnSwipeOutListener listener) {
         mListener = listener;
     }
@@ -30,9 +29,7 @@ public class SliderViewPager extends ViewPager {
                 mStartDragX = x;
                 break;
             case MotionEvent.ACTION_MOVE:
-                if (mStartDragX < x && getCurrentItem() == 0) {
-                    mListener.onSwipeOutAtStart();
-                } else if (mStartDragX > x && getCurrentItem() == getAdapter().getCount() - 1) {
+                if (mStartDragX > x && getCurrentItem() == getAdapter().getCount() - 1) {
                     mListener.onSwipeOutAtEnd();
                 }
                 break;
@@ -41,7 +38,6 @@ public class SliderViewPager extends ViewPager {
     }
 
     public interface OnSwipeOutListener {
-        public void onSwipeOutAtStart();
-        public void onSwipeOutAtEnd();
+        void onSwipeOutAtEnd();
     }
 }
