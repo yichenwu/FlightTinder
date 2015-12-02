@@ -55,7 +55,8 @@ public class HomeScreenActivity extends AppCompatActivity{
             webSettings.setJavaScriptEnabled(true);
             webView.setWebViewClient(new MyWebViewClient());
             uid = uid1;
-            webView.loadUrl("http://10.222.200.64:8080/api/suggestion/getAirportInfo?lat=" + latitude.toString() + "&long=" + longitude.toString());
+            webView.loadUrl("http://10.222.186.183:8080/app");
+//            webView.loadUrl("http://10.222.200.64:8080/api/suggestion/getAirportInfo?lat=" + latitude.toString() + "&long=" + longitude.toString());
             Log.d("uid", uid);
         }
     }
@@ -89,14 +90,18 @@ public class HomeScreenActivity extends AppCompatActivity{
             uid = uid1;
         }
 
-        webView.loadUrl("http://10.222.200.64:8080/api/suggestion/getAirportInfo?lat=" + latitude.toString() + "&long=" + longitude.toString());
+        findViewById(R.id.progressView).setVisibility(View.VISIBLE);
+        webView.setVisibility(View.GONE);
+        webView.loadUrl("http://10.222.186.183:8080/wallet");
+//        webView.loadUrl("http://10.222.0.64:8080/api/suggestion/getAirportInfo?lat=" + latitude.toString() + "&long=" + longitude.toString());
         Log.d("uid", uid);
     }
 
     private class MyWebViewClient extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            return false;
+            view.loadUrl(url);
+            return true;
         }
 
         @Override
